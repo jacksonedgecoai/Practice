@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis');
@@ -13,9 +14,9 @@ const SCOPES = ['https://www.googleapis.com/auth/gmail.send'];
 
 const CREDENTIALS = {
   installed: {
-    client_id: '798312951844-bfm4aarg65a4d6hk4n5lv2n9pqjahu2e.apps.googleusercontent.com',
-    client_secret: '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',
-    redirect_uris: ['http://localhost:8000/oauth2callback']
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    client_secret: process.env.GOOGLE_CLIENT_SECRET,
+    redirect_uris: [process.env.GOOGLE_REDIRECT_URI]
   }
 };
 
@@ -123,3 +124,4 @@ app.post('/sse', async (req, res) => {
     authorizeGmail();
   });
 })();
+EOF < /dev/null
