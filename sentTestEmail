@@ -1,0 +1,20 @@
+const axios = require('axios');
+
+const payload = {
+  type: "mcp_tool_use",
+  name: "send_email",
+  id: "test-1",
+  input: {
+    to: "jackotumbridge@gmail.com",
+    subject: "MCP Test Email",
+    body: "This email was sent from my MCP server — powered by Claude integration!"
+  }
+};
+
+axios.post('http://localhost:8000/sse', payload)
+  .then(res => {
+    console.log('✅ Response from server:', res.data);
+  })
+  .catch(err => {
+    console.error('❌ Error:', err.response ? err.response.data : err.message);
+  });
